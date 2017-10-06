@@ -9,6 +9,7 @@ function makeGreeting(lang) {
     }
 }
 
+// make functions with some parameters as defaults
 var greetEnglish = makeGreeting('en');
 var greetEspañol = makeGreeting('es');
 greetEnglish('Ryan', 'Apples');
