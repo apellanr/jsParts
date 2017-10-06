@@ -43,3 +43,30 @@ fs[0](); // outputs 3
 fs[1](); // outputs 3
 fs[2](); // outputs 3
 
+/* =====================================
+Why 3? Bc what's in memory hangs around
+- when funcs. called - looks for var i in its own code
+    + if cannot find, goes up to its outer reference
+    + in memory, i is 3 at the end of the for loop
+====================================== */
+
+// Example #2.5
+function buildFunctions2() {
+    var arr = [];
+    for(var i = 0; i < 3; i++) {
+        arr.push(
+            (function(j) {
+                // IIFE
+                return function() {
+                    console.log(j);
+                }
+            }(i))
+        )
+    }
+    return arr;
+}
+
+var fs2 = buildFunctions2();
+fs2[0](); // outputs 0
+fs2[1](); // outputs 1
+fs2[2](); // outputs 2
